@@ -61,7 +61,7 @@ spec:
           # Liveness probe - restart container if unhealthy
           livenessProbe:
             httpGet:
-              path: /settings/info
+              path: /
               port: 8056
             initialDelaySeconds: 30
             periodSeconds: 10
@@ -71,7 +71,7 @@ spec:
           # Readiness probe - remove from service if not ready
           readinessProbe:
             httpGet:
-              path: /settings/info
+              path: /
               port: 8056
             initialDelaySeconds: 10
             periodSeconds: 5
@@ -81,7 +81,7 @@ spec:
           # Startup probe - for slow starting containers
           startupProbe:
             httpGet:
-              path: /settings/info
+              path: /
               port: 8056
             initialDelaySeconds: 10
             periodSeconds: 10

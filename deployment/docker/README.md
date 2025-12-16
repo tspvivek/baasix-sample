@@ -59,7 +59,7 @@ All environment variables from `.env` are passed to the container. See `.env.exa
 
 ## Health Check
 
-The container includes a health check that queries `/settings/info` endpoint.
+The container includes a health check that queries the root `/` endpoint.
 
 ## Nginx Configuration
 

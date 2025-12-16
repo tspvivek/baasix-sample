@@ -81,7 +81,7 @@ health_check() {
     
     sleep 5  # Wait for app to start
     
-    RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:8056/settings/info)
+    RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:8056/)
     
     if [ "$RESPONSE" == "200" ]; then
         log "Health check passed"

@@ -156,4 +156,4 @@ annotations:
 
 ### Health Checks
 
-The deployment includes liveness and readiness probes that query `/settings/info`.
+The deployment includes liveness and readiness probes that query the root `/` endpoint.
