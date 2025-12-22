@@ -3,7 +3,7 @@
 		"baasix": {
 			"type": "stdio",
 			"command": "node",
-			"args": ["../mcp/server.js"],
+			"args": ["./mcp-server.js"],
 			"env": {
 				"BAASIX_URL": "http://localhost:8056",
 				"BAASIX_EMAIL": "admin@baasix.com",
