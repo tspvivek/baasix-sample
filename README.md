@@ -21,10 +21,14 @@ npm start
 ```
 my-baasix-app/
 ├── server.js              # Main entry point
+├── mcp-server.js          # MCP server entry point (for AI integration)
 ├── package.json           # Dependencies
 ├── .env                   # Environment configuration
 ├── .env.example           # Example environment file
 ├── .env.production        # Production environment template
+├── .mcp.json              # Claude Code / Anthropic CLI MCP config
+├── .vscode/
+│   └── mcp.json           # VS Code / GitHub Copilot MCP config
 ├── extensions/            # Custom extensions (optional)
 │   ├── baasix-hook-*/     # Hook extensions
 │   └── baasix-endpoint-*/ # Endpoint extensions
@@ -33,6 +37,89 @@ my-baasix-app/
     ├── docker/            # Docker deployment files
     ├── pm2/               # PM2 deployment files
     └── k8s/               # Kubernetes deployment files
+```
+
+## MCP Server (AI Integration)
+
+This sample project includes pre-configured MCP (Model Context Protocol) server files for AI-powered development. The MCP server allows AI assistants like Claude, GitHub Copilot, and Cursor to interact directly with your Baasix backend.
+
+### Configuration Files
+
+#### `.mcp.json` (Claude Code / Anthropic CLI)
+
+This file configures the MCP server for Claude Code and the Anthropic CLI:
+
+```json
+{
+  "mcpServers": {
+    "baasix": {
+      "command": "node",
+      "args": ["./mcp-server.js"],
+      "env": {
+        "BAASIX_URL": "http://localhost:8056",
+        "BAASIX_EMAIL": "admin@baasix.com",
+        "BAASIX_PASSWORD": "admin@123"
+      }
+    }
+  }
+}
+```
+
+#### `.vscode/mcp.json` (VS Code / GitHub Copilot)
+
+This file configures the MCP server for VS Code with GitHub Copilot:
+
+```jsonc
+{
+  "servers": {
+    "baasix": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["./mcp-server.js"],
+      "env": {
+        "BAASIX_URL": "http://localhost:8056",
+        "BAASIX_EMAIL": "admin@baasix.com",
+        "BAASIX_PASSWORD": "admin@123"
+      }
+    }
+  },
+  "inputs": []
+}
+```
+
+### Using the MCP Server
+
+1. **Install the MCP server package:**
+   ```bash
+   npm install @tspvivek/baasix-mcp-server
+   ```
+
+2. **Start your Baasix server first:**
+   ```bash
+   npm start
+   ```
+
+3. **Configure your AI tool:**
+   - The configuration files are already included in this sample project
+   - Update the environment variables (`BAASIX_URL`, `BAASIX_EMAIL`, `BAASIX_PASSWORD`) to match your setup
+
+4. **Available MCP Tools:**
+   - 40+ tools for schema management, CRUD operations, permissions, authentication, and more
+   - Full documentation: [Baasix MCP Server](https://github.com/tspvivek/baasix-mcp-server)
+
+### MCP Server Entry Point
+
+The `mcp-server.js` file is the entry point for the MCP server:
+
+```javascript
+import { startMCPServer } from "@tspvivek/baasix-mcp-server";
+
+if (import.meta.url === `file://${process.argv[1]}`) {
+  startMCPServer().catch((error) => {
+    console.error('Failed to start MCP server:', error);
+    process.exit(1);
+  });
+}
 ```
 
 ## Deployment Options
