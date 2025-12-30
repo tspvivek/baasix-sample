@@ -16,11 +16,9 @@ services:
       - "8056:8056"
     environment:
       - NODE_ENV=development
-      - DB_HOST=postgres
-      - DB_PORT=5432
-      - DB_NAME=baasix
-      - DB_USER=postgres
-      - DB_PASSWORD=postgres
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/baasix
+      - CACHE_ENABLED=true
+      - CACHE_ADAPTER=redis
       - CACHE_REDIS_URL=redis://redis:6379
     env_file:
       - ../../.env

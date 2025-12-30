@@ -112,11 +112,11 @@ kubectl rollout undo deployment/baasix -n baasix
 
 ### Using External PostgreSQL
 
-Update `configmap.yaml`:
+Update `secret.yaml` with your DATABASE_URL (base64 encoded):
 
-```yaml
-DB_HOST: "your-postgres-host.example.com"
-DB_PORT: "5432"
+```bash
+# Encode your database URL
+echo -n 'postgresql://user:password@your-postgres-host.example.com:5432/baasix?sslmode=require' | base64
 ```
 
 ### Using External Redis

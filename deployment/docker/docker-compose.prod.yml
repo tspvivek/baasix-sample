@@ -13,8 +13,9 @@ services:
       dockerfile: deployment/docker/Dockerfile
     environment:
       - NODE_ENV=production
-      - DB_HOST=postgres
-      - DB_PORT=5432
+      - DATABASE_URL=postgresql://${DB_USER:-baasix_user}:${DB_PASSWORD:-secure_password}@postgres:5432/${DB_NAME:-baasix_production}
+      - CACHE_ENABLED=true
+      - CACHE_ADAPTER=redis
       - CACHE_REDIS_URL=redis://redis:6379
     env_file:
       - ../../.env.production
