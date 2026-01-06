@@ -13,8 +13,8 @@ WORKDIR /app
 # Copy package files
 COPY package*.json ./
 
-# Install production dependencies only
-RUN npm ci --only=production
+# Install all dependencies (tsx is a devDependency needed for running)
+RUN npm ci
 
 # Copy application files
 COPY server.js ./
@@ -44,4 +44,4 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=30s --retries=3 \
     CMD curl -f http://localhost:8056/ || exit 1
 
 # Start the application
-CMD ["node", "server.js"]
+CMD ["npx", "tsx", "server.js"]

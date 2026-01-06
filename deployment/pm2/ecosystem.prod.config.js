@@ -18,6 +18,10 @@ module.exports = {
       // Entry point
       script: '../../server.js',
 
+      // Use tsx for ESM support on all platforms
+      interpreter: 'npx',
+      interpreter_args: 'tsx',
+
       // Working directory
       cwd: '../..',
 

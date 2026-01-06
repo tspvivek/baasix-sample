@@ -91,10 +91,14 @@ cat > package.json << 'EOF'
   "type": "module",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "tsx server.js",
+    "dev": "tsx watch server.js"
   },
   "dependencies": {
     "@tspvivek/baasix": "latest"
+  },
+  "devDependencies": {
+    "tsx": "^4.16.0"
   }
 }
 EOF

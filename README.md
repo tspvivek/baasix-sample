@@ -53,8 +53,8 @@ This file configures the MCP server for Claude Code and the Anthropic CLI:
 {
   "mcpServers": {
     "baasix": {
-      "command": "node",
-      "args": ["./mcp-server.js"],
+      "command": "npx",
+      "args": ["tsx", "./mcp-server.js"],
       "env": {
         "BAASIX_URL": "http://localhost:8056",
         "BAASIX_EMAIL": "admin@baasix.com",
@@ -74,8 +74,8 @@ This file configures the MCP server for VS Code with GitHub Copilot:
   "servers": {
     "baasix": {
       "type": "stdio",
-      "command": "node",
-      "args": ["./mcp-server.js"],
+      "command": "npx",
+      "args": ["tsx", "./mcp-server.js"],
       "env": {
         "BAASIX_URL": "http://localhost:8056",
         "BAASIX_EMAIL": "admin@baasix.com",
