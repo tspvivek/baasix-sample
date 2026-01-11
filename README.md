@@ -184,6 +184,26 @@ export default {
 
 See `.env.example` for all available configuration options.
 
+### Multi-Instance Deployment
+
+When running multiple instances (PM2 cluster, Kubernetes, etc.), configure Redis for coordination:
+
+```bash
+# Socket.IO - Required for WebSocket broadcasting across instances
+SOCKET_ENABLED=true
+SOCKET_REDIS_ENABLED=true
+SOCKET_REDIS_URL=redis://localhost:6379
+
+# Tasks - Required for distributed task locking
+TASK_SERVICE_ENABLED=true
+TASK_REDIS_ENABLED=true
+TASK_REDIS_URL=redis://localhost:6379
+
+# Cache - Recommended for consistency
+CACHE_ADAPTER=redis
+CACHE_REDIS_URL=redis://localhost:6379
+```
+
 ## Documentation
 
 For full documentation, visit: https://baasix.com/docs
